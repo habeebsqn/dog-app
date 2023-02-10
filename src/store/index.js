@@ -5,6 +5,8 @@ export default createStore({
     searchChar: "",
     isSearching: false,
     onViewDog: {},
+    isLoading: false,
+    onView: false,
   },
 
   mutations: {
@@ -17,6 +19,12 @@ export default createStore({
     VIEW_DOG(state, input) {
       state.onViewDog = input;
     },
+    IS_LOADING(state, input) {
+      state.isLoading = input;
+    },
+    ON_VIEW(state, input) {
+      state.onView = input;
+    },
   },
   actions: {
     inputValue(context, input) {
@@ -27,6 +35,12 @@ export default createStore({
     },
     onViewDog(context, input) {
       context.commit("VIEW_DOG", input);
+    },
+    isLoading(context, input) {
+      context.commit("IS_LOADING", input);
+    },
+    onView(context, input) {
+      context.commit("ON_VIEW", input);
     },
   },
 });

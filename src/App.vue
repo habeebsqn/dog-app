@@ -11,12 +11,12 @@ import NavbarView from "./views/NavbarView.vue";
     </div>
   </header>
   <body>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col overflow-scroll" :class="[$style.view]">
           <DogDisplayView />
         </div>
-        <div class="col bg-light align-self-center" :class="[$style.view]">
+        <div class="col bg-light align-self-center">
           <DogProfileView />
         </div>
       </div>

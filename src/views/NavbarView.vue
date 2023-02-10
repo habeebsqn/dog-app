@@ -10,6 +10,7 @@
             required
             placeholder="Search"
             v-model="char"
+            @change="$store.dispatch('searchCharDefault', this.char)"
           />
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
