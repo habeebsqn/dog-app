@@ -1,8 +1,5 @@
 <template>
   <div class="container" v-if="!this.$store.state.isLoading">
-    <!-- <div v-if="isError" class="text-center">
-      <p>{{ isError }}</p>
-    </div> -->
     <div class="row">
       <template v-for="(dog, index) in dogs">
         <div class="col-md-4 m-4">
@@ -43,8 +40,6 @@ export default {
   data() {
     return {
       dogs: [],
-      // isLoading: this.$store.state.isLoading,
-      isSearching: this.$store.state.isSearching,
       onViewDog: {},
     };
   },
@@ -71,7 +66,6 @@ export default {
       this.onViewDog = { url, breedName };
       this.$store.dispatch("onViewDog", this.onViewDog);
       this.$store.dispatch("onView", true);
-      window.console.log(this.onViewDog);
     },
   },
   created() {

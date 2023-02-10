@@ -32,7 +32,6 @@ export default {
       if (this.char.trim().length > 0) {
         this.$store.dispatch("inputValue", this.char);
         this.$store.dispatch("isSearching", (this.isSearching = true));
-        window.console.log(this.$store.state.searchChar);
       }
     },
   },
