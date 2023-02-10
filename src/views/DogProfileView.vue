@@ -22,22 +22,17 @@
       </div>
     </div>
     <div v-else>
-      <DogIconView />
+      <div class="text-center">
+        <i class="bi-gear-fill bi--spin"></i>
+        <h1>SELECT A DOG TO VIEW BREED</h1>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import DogIconView from "../components/icons/DogIconView.vue";
-</script>
-<script></script>
+<script setup></script>
 
 <style module>
-.profile {
-  width: 300px;
-  height: 300px;
-}
-
 .loader {
   width: 3rem;
   height: 3rem;
