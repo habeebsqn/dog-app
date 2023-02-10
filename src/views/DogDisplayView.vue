@@ -40,23 +40,16 @@ export default {
   },
 
   methods: {
-    async fetchDogs() {
+    async fetchDogs(endPoint) {
       this.isLoading = true;
       try {
-        const response = await fetch(
-          "https://dog.ceo/api/breeds/image/random/50"
-        );
+        const response = await fetch(endPoint);
         if (!response.ok) {
           throw new Error("Something went wrong!");
         }
 
         const data = await response.json();
         this.dogs = data.message;
-
-        //   const dogs = data.message;
-
-        //   setDogs(dogs);
-        //   console.log(dogs);
       } catch (error) {
         console.error(error.message);
       }
@@ -65,8 +58,28 @@ export default {
   },
 
   created() {
-    this.fetchDogs();
+    this.fetchDogs("https://dog.ceo/api/breeds/image/random/10");
   },
+
+  watch: {
+    isSearching(newValue) {
+      if (this.$store.state.isSearching) {
+        this.fetchDogs("https://dog.ceo/api/breeds/image/random/5");
+      } else {
+        this.fetchDogs("https://dog.ceo/api/breeds/image/random/10");
+      }
+    },
+  },
+
+  // computed: {
+  //   filter() {
+  //     if (this.$store.state.isSearching) {
+  //       this.fetchDogs("https://dog.ceo/api/breeds/image/random/5");
+  //     } else {
+  //       this.fetchDogs("https://dog.ceo/api/breeds/image/random/10");
+  //     }
+  //   },
+  // },
 };
 </script>
 

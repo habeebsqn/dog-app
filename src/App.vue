@@ -6,6 +6,7 @@ import NavbarView from "./views/NavbarView.vue";
 <template>
   <header>
     <NavbarView />
+    {{ $store.state.isSearching }}
   </header>
   <body>
     <DogDisplayView />

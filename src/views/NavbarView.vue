@@ -20,9 +20,21 @@
 
 <script>
 export default {
-  //   setup() {
-  //     return {};
-  //   },
+  data() {
+    return {
+      char: "",
+      isSearching: false,
+    };
+  },
+
+  methods: {
+    onHandleSearch() {
+      if (this.char.length > 0) {
+        this.$store.dispatch("inputValue", this.char);
+        this.$store.dispatch("isSearching", (this.isSearching = true));
+      }
+    },
+  },
 };
 </script>
 
