@@ -30,6 +30,7 @@
 <script setup>
 import DogIconView from "../components/icons/DogIconView.vue";
 </script>
+<script></script>
 
 <style module>
 .profile {

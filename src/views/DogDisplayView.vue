@@ -51,6 +51,7 @@ export default {
   methods: {
     async fetchDogs(endPoint) {
       this.$store.dispatch("isLoading", true);
+
       try {
         const response = await fetch(endPoint);
         if (!response.ok) {
@@ -62,6 +63,7 @@ export default {
         console.error(error.message);
       }
       this.$store.dispatch("isLoading", false);
+      this.$store.dispatch("isSearching", false);
     },
     onHandleProfile(dog) {
       let url = dog;
@@ -81,9 +83,6 @@ export default {
       return this.$store.state.isSearching;
       // Or return value of isSearching
     },
-    // default() {
-    //   return this.$store.state.searchCharDefault;
-    // },
   },
   watch: {
     search(newValue, oldValue) {
@@ -98,11 +97,6 @@ export default {
         this.fetchDogs("https://dog.ceo/api/breeds/image/random/50");
       }
     },
-    // default(newValue, oldValue) {
-    //   if (newValue.trim() === "") {
-    //     this.fetchDogs("https://dog.ceo/api/breeds/image/random/50");
-    //   }
-    // },
   },
 };
 </script>

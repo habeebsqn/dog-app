@@ -10,7 +10,6 @@
             required
             placeholder="Search"
             v-model="char"
-            @change="$store.dispatch('searchCharDefault', this.char)"
           />
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -30,9 +29,10 @@ export default {
 
   methods: {
     onHandleSearch() {
-      if (this.char.length > 0) {
+      if (this.char.trim().length > 0) {
         this.$store.dispatch("inputValue", this.char);
         this.$store.dispatch("isSearching", (this.isSearching = true));
+        window.console.log(this.$store.state.searchChar);
       }
     },
   },
