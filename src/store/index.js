@@ -4,6 +4,7 @@ export default createStore({
   state: {
     searchChar: "",
     isSearching: false,
+    onViewDog: {},
   },
 
   mutations: {
@@ -13,6 +14,9 @@ export default createStore({
     IS_SEARCHING(state, input) {
       state.isSearching = input;
     },
+    VIEW_DOG(state, input) {
+      state.onViewDog = input;
+    },
   },
   actions: {
     inputValue(context, input) {
@@ -20,6 +24,9 @@ export default createStore({
     },
     isSearching(context, input) {
       context.commit("IS_SEARCHING", input);
+    },
+    onViewDog(context, input) {
+      context.commit("VIEW_DOG", input);
     },
   },
 });

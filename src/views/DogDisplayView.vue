@@ -15,7 +15,13 @@
               :src="dog"
             />
             <div class="card-footer">
-              <button class="btn btn-primary" type="button">VIEW BREED</button>
+              <button
+                class="btn btn-primary"
+                type="button"
+                @click="onHandleProfile(dog)"
+              >
+                VIEW BREED
+              </button>
             </div>
           </div>
         </div>
@@ -36,6 +42,8 @@ export default {
     return {
       dogs: [],
       isLoading: false,
+      isSearching: this.$store.state.isSearching,
+      onViewDog: {},
     };
   },
 
@@ -55,25 +63,23 @@ export default {
       }
       this.isLoading = false;
     },
+
+    onHandleProfile(dog) {
+      let url = dog;
+      let breedName = url.split("/")[4];
+      this.onViewDog = { url, breedName };
+      this.$store.dispatch("onViewDog", this.onViewDog);
+      window.console.log(this.onViewDog);
+    },
   },
 
   created() {
     this.fetchDogs("https://dog.ceo/api/breeds/image/random/10");
   },
 
-  watch: {
-    isSearching(newValue) {
-      if (this.$store.state.isSearching) {
-        this.fetchDogs("https://dog.ceo/api/breeds/image/random/5");
-      } else {
-        this.fetchDogs("https://dog.ceo/api/breeds/image/random/10");
-      }
-    },
-  },
-
-  // computed: {
-  //   filter() {
-  //     if (this.$store.state.isSearching) {
+  // watch: {
+  //   isLoading(newValue) {
+  //     if ($store.state.isSearching) {
   //       this.fetchDogs("https://dog.ceo/api/breeds/image/random/5");
   //     } else {
   //       this.fetchDogs("https://dog.ceo/api/breeds/image/random/10");

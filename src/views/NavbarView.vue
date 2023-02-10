@@ -40,6 +40,6 @@ export default {
 
 <style module>
 .nav {
-  background-color: "#e3f2fd";
+  background-color: #e3f2fd;
 }
 </style>
