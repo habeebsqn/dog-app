@@ -58,7 +58,6 @@ export default {
         console.error(error.message);
       }
       this.$store.dispatch("isLoading", false);
-      this.$store.dispatch("isSearching", false);
     },
     onHandleProfile(dog) {
       let url = dog;
@@ -74,7 +73,7 @@ export default {
 
   computed: {
     search() {
-      return this.$store.state.isSearching;
+      return this.$store.state.searchChar;
       // Or return value of isSearching
     },
   },
@@ -83,7 +82,7 @@ export default {
       //we accept the isSearching value as newValue
       //and use it to conditionally render fetchDoys
       //based on default or searched breed
-      if (newValue) {
+      if (newValue.trim().length > 0) {
         this.fetchDogs(
           `https://dog.ceo/api/breed/${this.$store.state.searchChar}/images`
         );
