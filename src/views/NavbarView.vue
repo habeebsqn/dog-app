@@ -8,7 +8,7 @@
             class="form-control me-2"
             required
             type="search"
-            placeholder="Search"
+            placeholder="Search dogs by breed"
             aria-label="Search"
             v-model="char"
           />
