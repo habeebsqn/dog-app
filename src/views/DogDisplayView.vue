@@ -1,7 +1,7 @@
 <template>
   <div class="container marketing" v-if="!this.$store.state.isLoading">
     <div class="row">
-      <div class="col-lg-4" v-for="(dog, index) in dogs">
+      <div class="col-lg-4 col-sm-6 col-md-6" v-for="(dog, index) in dogs">
         <img
           :src="dog"
           :key="index"
