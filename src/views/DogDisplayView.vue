@@ -1,37 +1,29 @@
 <template>
-  <div class="container" v-if="!this.$store.state.isLoading">
+  <div class="container marketing" v-if="!this.$store.state.isLoading">
     <div class="row">
-      <template v-for="(dog, index) in dogs">
-        <div class="col-md-4 m-4">
-          <div class="card border-0">
-            <img
-              class="card-img-top"
-              :class="[$style.image]"
-              alt="..."
-              :key="index"
-              :src="dog"
-            />
-            <div class="card-body">
-              <div class="d-grid gap-2">
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  @click="onHandleProfile(dog)"
-                >
-                  VIEW BREED
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </template>
+      <div class="col-lg-4" v-for="(dog, index) in dogs">
+        <img
+          :src="dog"
+          :key="index"
+          class="rounded mx-auto d-block"
+          :class="[$style.image]"
+          alt="..."
+        />
+        <p class="text-center mt-2">
+          <button class="btn btn-secondary" @click="onHandleProfile(dog)">
+            View details &raquo;
+          </button>
+        </p>
+      </div>
     </div>
   </div>
-  <div class="text-center" v-else-if="this.$store.state.isLoading">
+  <div
+    class="d-flex justify-content-center"
+    v-else-if="this.$store.state.isLoading"
+  >
     <div class="spinner-grow" :class="[$style.loader]" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
-    <h3>FETCHING HAPPY DOGS IMAGES</h3>
   </div>
 </template>
 
@@ -54,11 +46,11 @@ export default {
         }
         const data = await response.json();
         this.dogs = data.message;
-      } catch (error) {
-        console.error(error.message);
-      }
+      } catch (error) {}
       this.$store.dispatch("isLoading", false);
+      this.$store.dispatch("isSearching", false);
     },
+
     onHandleProfile(dog) {
       let url = dog;
       let breedName = url.split("/")[4];
@@ -67,8 +59,9 @@ export default {
       this.$store.dispatch("onView", true);
     },
   },
+
   created() {
-    this.fetchDogs("https://dog.ceo/api/breeds/image/random/10");
+    this.fetchDogs("https://dog.ceo/api/breeds/image/random/50");
   },
 
   computed: {
@@ -99,12 +92,9 @@ export default {
   width: 200px;
   height: 200px;
 }
-.contain {
-  width: 50%;
-}
+
 .loader {
   width: 3rem;
   height: 3rem;
-  margin: 15rem;
 }
 </style>

@@ -1,14 +1,15 @@
 <template>
   <div>
-    <nav class="navbar navbar-dark bg-dark" :class="[$style.nav]">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand">HAPPY DOGS GALLERY</a>
+        <a class="navbar-brand" href="#">HAPPY DOGS</a>
         <form class="d-flex" @click.prevent="onHandleSearch">
           <input
             class="form-control me-2"
-            type="search"
             required
+            type="search"
             placeholder="Search"
+            aria-label="Search"
             v-model="char"
           />
           <button class="btn btn-outline-success" type="submit">Search</button>
@@ -37,9 +38,3 @@ export default {
   },
 };
 </script>
-
-<style module>
-.nav {
-  background-color: #e3f2fd;
-}
-</style>

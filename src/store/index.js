@@ -7,6 +7,7 @@ export default createStore({
     onViewDog: {},
     isLoading: false,
     onView: false,
+    isError: "",
   },
 
   mutations: {
@@ -25,6 +26,9 @@ export default createStore({
     ON_VIEW(state, input) {
       state.onView = input;
     },
+    IS_ERROR(state, input) {
+      state.isError = input;
+    },
   },
   actions: {
     inputValue(context, input) {
@@ -41,6 +45,9 @@ export default createStore({
     },
     onView(context, input) {
       context.commit("ON_VIEW", input);
+    },
+    isError(context, input) {
+      context.commit("IS_ERROR", input);
     },
   },
 });
