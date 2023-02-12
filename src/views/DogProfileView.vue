@@ -26,11 +26,8 @@
         <div class="card text-center">
           <i class="bi bi-image"></i>
           <div class="card-body">SELECT A DOG TO VIEW BREED</div>
+          <div class="card-body">(search breed starting with a lower-case)</div>
         </div>
-        <!-- <div class="text-center">
-          <i class="bi-gear-fill bi--spin"></i>
-          <h1>SELECT A DOG TO VIEW BREED</h1>
-        </div> -->
       </div>
     </div>
   </div>
