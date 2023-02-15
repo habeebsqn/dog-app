@@ -1,5 +1,8 @@
 <template>
-  <div class="container marketing" v-if="!this.$store.state.isLoading">
+  <div
+    class="container marketing"
+    v-if="!this.$store.state.isLoading && !this.$store.state.isError"
+  >
     <div class="row">
       <div class="col-lg-4 col-sm-6 col-md-6" v-for="(dog, index) in dogs">
         <img
@@ -25,6 +28,9 @@
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
+  <div class="text-center" v-else>
+    <p>{{ $store.state.isError }}</p>
+  </div>
 </template>
 
 <script>
@@ -33,6 +39,7 @@ export default {
     return {
       dogs: [],
       onViewDog: {},
+      defaultUrl: "https://dog.ceo/api/breeds/image/random/50",
     };
   },
   methods: {
@@ -46,7 +53,9 @@ export default {
         }
         const data = await response.json();
         this.dogs = data.message;
-      } catch (error) {}
+      } catch (error) {
+        this.$store.dispatch("isError", error.message);
+      }
       this.$store.dispatch("isLoading", false);
       this.$store.dispatch("isSearching", false);
     },
